@@ -5,6 +5,8 @@ import cengiz.dto.PersonelDto;
 import cengiz.exception.BaseException;
 
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -35,6 +37,21 @@ public class PersonelService {
     if (personelDto.getKurumId() == null) {
       throw new BaseException("kurum id bos olamaz");
     }
+    return personelDto;
+  }
+
+  public PersonelDto getById(Integer id) {
+    if (id == null || id <= 0) {
+      throw new BaseException("Gecersiz ID");
+    }
+    // Örnek bir personelDto döndürüyoruz.
+    PersonelDto personelDto = new PersonelDto();
+    personelDto.setKullaniciAdi("Cengiz");
+    personelDto.setKullaniciSoyadi("Ozdemir");
+    personelDto.setKurumId(id);
+    personelDto.setBaslangicTarihi(LocalDateTime.now());
+    personelDto.setBitisTarihi(LocalDateTime.now().plusDays(2));
+
     return personelDto;
   }
 

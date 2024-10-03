@@ -73,4 +73,19 @@ class PersonelServiceTest {
     assertNotNull(savedDto);
     assertEquals("Cengiz", savedDto.getKullaniciAdi());
   }
+  @Test
+  void When_GetByIdWithInvalidId_Expect_Exception() {
+    Integer invalidId = -1;
+
+    BaseException exception = assertThrows(BaseException.class, () -> personelService.getById(invalidId));
+    assertEquals("Gecersiz ID", exception.getMessage());
+  }
+
+  @Test
+  void When_GetByIdWithNullId_Expect_Exception() {
+    Integer nullId = null;
+
+    BaseException exception = assertThrows(BaseException.class, () -> personelService.getById(nullId));
+    assertEquals("Gecersiz ID", exception.getMessage());
+  }
 }
